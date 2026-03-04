@@ -1,6 +1,36 @@
 -- imports
 
-dofile("lib/import.lua") local Grid = import("grid") local draw = import("draw") import("tblclean") import("linalg") import("List") local res = {} local tres = {} local debugMode = false local gameLoop = true local framesElapsed = 0 local particles = List("particles") local scale = 1 local oldtime = ccemux.milliTime() local startTime = ccemux.milliTime() local function userInput() local event, key, is_held while true do event, key, is_held = os.pullEvent("key") if key == keys.space then gameLoop = false end event, key, is_held = nil, nil, nil end end local yRange = 7
+dofile("lib/import.lua") 
+
+local Grid = import("grid") 
+local draw = import("draw") 
+import("tblclean") 
+import("linalg") 
+import("List") 
+
+local res = {} 
+local tres = {} 
+local debugMode = false 
+local gameLoop = true 
+local framesElapsed = 0 
+local particles = List("particles") 
+
+local scale = 1 
+local oldtime = ccemux.milliTime() 
+local startTime = ccemux.milliTime() 
+
+local function userInput() 
+    local event, key, is_held 
+    while true do 
+        event, key, is_held = os.pullEvent("key") 
+        if key == keys.space then 
+            gameLoop = false 
+        end 
+        event, key, is_held = nil, nil, nil 
+    end 
+end 
+
+local yRange = 7
 local xRange = 10 
 local function addParticles(n)
     for i=1,n do particles:add(vec({
